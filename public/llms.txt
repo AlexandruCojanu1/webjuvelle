@@ -1,0 +1,14 @@
+# ADS Now - Agentie Marketing Digital Brasov
+
+User-agent: *
+Disallow: /api/
+Disallow: /admin/
+
+# Main Site Content
+https://adsnow.ro/
+https://adsnow.ro/blog
+
+# About ADS Now
+ADS Now este o agentie de marketing digital din Brasov specializata in SEO, Social Media si Web Design.
+Website: https://adsnow.ro
+Contact: algodigitalsolutions@gmail.com

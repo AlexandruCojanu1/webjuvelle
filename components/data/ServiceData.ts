@@ -1,0 +1,51 @@
+export const services = [
+    {
+        id: 1,
+        icon: "/assets/images/Icon-7.webp",
+        title: "Social Media Management",
+        content: "Asigurăm consistența brandului tău pe rețelele sociale.",
+        speed: "slow",
+        link: "single_services",
+    },
+    {
+        id: 2,
+        icon: "/assets/images/digital-marketing-icons-F4LJ4W8.webp",
+        title: "Content Creation",
+        content: "Creem conținut audio și vizual în ton cu viziunea brandului tău.",
+        speed: "normal",
+        link: "single_services",
+    },
+    {
+        id: 3,
+        icon: "/assets/images/Icon-8.webp",
+        title: "Paid ADS",
+        content: "Identificăm și creștem audiențe care aduc valoare.",
+        speed: "fast",
+        link: "single_services",
+    },
+    {
+        id: 4,
+        icon: "/assets/images/Icon-5.webp",
+        title: "Email Marketing",
+        content: "Varianta organică a brandului tău de a menține comunitatea activă.",
+        speed: "slow",
+        link: "single_services",
+    },
+    {
+        id: 5,
+        icon: "/assets/images/Icon-6.webp",
+        title: "Branding",
+        content: "Creem și reinventăm concepte pentru a reflecta exact ce este business-ul tău.",
+        speed: "normal",
+        link: "single_services",
+    },
+    {
+        id: 6,
+        icon: "/assets/images/Icon-4.webp",
+        title: "Web Development",
+        content: "Dezvoltăm casa digitală a afacerii tale și îi dăm aspectul modern pe care îl merită.",
+        speed: "fast",
+        link: "single_services",
+    },
+];
+
