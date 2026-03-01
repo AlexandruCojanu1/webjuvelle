@@ -14,7 +14,7 @@ export default function Banner() {
           <div className="d-flex flex-column gspace-2">
             <AnimateOnScroll animation="fadeInLeft" speed="normal">
               <h1 className="title-heading-banner">
-                Your Online Identity Advisor
+                Generate a Website with AI in seconds
               </h1>
             </AnimateOnScroll>
             <div className="banner-heading">
@@ -26,22 +26,20 @@ export default function Banner() {
               <AnimateOnScroll animation="fadeInRight" speed="normal">
                 <div className="banner-content order-lg-2 order-1">
                   <p>
-                    Construim identități digitale pentru branduri. Nu vindem servicii. Alegem parteneri.
+                    Answer a few questions and launch your online business. Our AI assistant handles the design, content, and structure.
                   </p>
                   <div className="d-flex flex-md-row flex-column justify-content-center justify-content-lg-start align-self-center align-self-lg-start gspace-3">
-                    <a 
-                      href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ38JrGsAlyvinUx2IY6KHYyI7IQ-QaifvAz9diIDscT3oKh-S-_tG2_Kgkv_CYFaGW_RxtNrH73" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <a
+                      href="/create"
                       className="btn btn-accent"
                     >
                       <div className="btn-title">
-                        <span>Let's see if we Click</span>
+                        <span>Get Started</span>
                       </div>
                       <div className="icon-circle">
-                        <Image 
-                          src="/assets/images/cursor.webp" 
-                          alt="Click icon" 
+                        <Image
+                          src="/assets/images/cursor.webp"
+                          alt="Click icon"
                           width={20}
                           height={20}
                           className="cursor-icon"

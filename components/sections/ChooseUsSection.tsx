@@ -13,7 +13,7 @@ export default function ChooseUsSection() {
           <div className="chooseus-card-container">
             <div className="d-flex flex-column gspace-2">
               {whychooseus.slice(0, 3).map((item) => (
-                <ChooseUsCard 
+                <ChooseUsCard
                   key={item.id}
                   icon={item.icon}
                   title={item.title}
@@ -30,16 +30,16 @@ export default function ChooseUsSection() {
                 <div className="d-flex flex-column gspace-2">
                   <div className="sub-heading">
                     <i className="fa-regular fa-circle-dot"></i>
-                    <span>Cea mai bună alegere pentru brandul tău</span>
+                    <span>Why choose Webjuvelle</span>
                   </div>
-                  <h2 className="title-heading"><strong>Vizibilitate. Stabilitate. Predictibilitate.</strong></h2>
-                  <p className="mb-0">Execuție rapidă. La cel mai înalt standard. Un partener care îți spune și ce să nu faci, nu doar ce vrei să auzi.</p>
+                  <h2 className="title-heading"><strong>Intelligence. Speed. Aesthetics.</strong></h2>
+                  <p className="mb-0">Build your online presence effortlessly. Our AI writes the code, picks the right colors, and prepares texts for you.</p>
                 </div>
               </AnimateOnScroll>
               <div className="image-container">
-                <Image 
-                  src="/assets/images/Gemini_Generated_Image_kzt06fkzt06fkzt0.webp" 
-                  alt="Why Choose Us Image" 
+                <Image
+                  src="/assets/images/Gemini_Generated_Image_kzt06fkzt06fkzt0.webp"
+                  alt="Why Choose Us Image"
                   width={600}
                   height={800}
                   className="chooseus-img"
@@ -54,12 +54,12 @@ export default function ChooseUsSection() {
                     <div className="card-chooseus-cta-wrapper">
                       <AnimateOnScroll animation="fadeInUp" speed="normal">
                         <div className="card card-chooseus-cta">
-                          <h5>Ai aflat care este identitatea business-ului tău?</h5>
+                          <h5>Are you ready to meet your new website?</h5>
                           <div className="link-wrapper">
-                            <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ38JrGsAlyvinUx2IY6KHYyI7IQ-QaifvAz9diIDscT3oKh-S-_tG2_Kgkv_CYFaGW_RxtNrH73" target="_blank" rel="noopener noreferrer">Aplică acum</a>
-                            <Image 
-                              src="/assets/images/cursor.webp" 
-                              alt="arrow" 
+                            <a href="/create">Get Started</a>
+                            <Image
+                              src="/assets/images/cursor.webp"
+                              alt="arrow"
                               width={16}
                               height={16}
                               className="cursor-icon"

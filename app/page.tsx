@@ -26,18 +26,15 @@ const FAQSection = dynamic(() => import('@/components/sections/FAQSection'), {
 const NewsletterSection = dynamic(() => import('@/components/sections/NewsletterSection'), {
   loading: () => null,
 })
-const BlogSection = dynamic(() => import('@/components/sections/BlogSection'), {
-  loading: () => null,
-})
 
 // Page-specific metadata (merges with root layout)
 export const metadata: Metadata = {
-  title: 'ADSNOW - Agenție Marketing Digital',
-  description: 'Agenție boutique de strategie digitală și marketing online. Construim identități digitale pentru profesioniști și branduri care aduc valoare.',
+  title: 'Webjuvelle - AI Website Builder',
+  description: 'Generate a professional website extremely fast and simple with Artificial Intelligence. Answer a few questions and launch your online business.',
   openGraph: {
-    title: 'ADSNOW - Agenție Marketing Digital',
-    description: 'Agenție boutique de strategie digitală și marketing online. Construim identități digitale pentru profesioniști și branduri care aduc valoare.',
-    url: 'https://www.adsnow.ro', // FIX: Use www.adsnow.ro
+    title: 'Webjuvelle - AI Website Builder',
+    description: 'Generate a professional website extremely fast and simple with Artificial Intelligence. Answer a few questions and launch your online business.',
+    url: 'https://www.webjuvelle.com', // Update with actual domain if known
     images: ['/opengraph-image.jpg'],
   },
 }
@@ -46,9 +43,9 @@ export default function HomePage() {
   return (
     <>
       {/* Structured Data for SEO */}
-      <OrganizationSchema siteUrl="https://www.adsnow.ro" />
-      <WebsiteSchema siteUrl="https://www.adsnow.ro" />
-      <ServiceSchema siteUrl="https://www.adsnow.ro" />
+      <OrganizationSchema siteUrl="https://www.webjuvelle.com" />
+      <WebsiteSchema siteUrl="https://www.webjuvelle.com" />
+      <ServiceSchema siteUrl="https://www.webjuvelle.com" />
 
       {/* Main Content */}
       <main>
@@ -61,7 +58,6 @@ export default function HomePage() {
         <PricingSection />
         <FAQSection />
         <NewsletterSection />
-        <BlogSection />
       </main>
     </>
   )

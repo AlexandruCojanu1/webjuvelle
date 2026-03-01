@@ -12,9 +12,9 @@ export default function Footer() {
                 <div className="col col-lg-5">
                   <div className="footer-logo-container">
                     <div className="logo-container-footer">
-                      <Image 
-                        src="/assets/images/logo1.webp" 
-                        alt="ADSNOW Logo" 
+                      <Image
+                        src="/assets/images/logo1.webp"
+                        alt="ADSNOW Logo"
                         width={150}
                         height={50}
                         className="site-logo img-fluid"
@@ -24,7 +24,7 @@ export default function Footer() {
                     </div>
                     <h4>Your Online Identity Advisor</h4>
                     <p>
-                      Nu vindem servicii. Alegem parteneri. Experiențe digitale care rămân simple pentru tine, transparente pentru parteneri și relevante pentru public.
+                      We don't sell services. We choose partners. Digital experiences that remain simple for you, transparent for partners, and relevant to the public.
                     </p>
                   </div>
                 </div>
@@ -34,7 +34,7 @@ export default function Footer() {
 
                 <div className="col col-lg-4">
                   <div className="footer-contact-container">
-                    <h5>Informații Contact</h5>
+                    <h5>Contact Information</h5>
                     <ul className="contact-list">
                       <li>
                         <a href="mailto:algodigitalsolutions@gmail.com">
@@ -47,13 +47,13 @@ export default function Footer() {
                       <li>Brașov, Strada Octavian Goga 7</li>
                     </ul>
                     <div className="d-flex flex-column gspace-1">
-                      <h5>Rețele Sociale</h5>
+                      <h5>Social Media</h5>
                       <div className="social-container">
                         <div className="social-item-wrapper">
-                          <a 
-                            href="https://www.facebook.com/adsnow.ro" 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
+                          <a
+                            href="https://www.facebook.com/adsnow.ro"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="social-item"
                             aria-label="Facebook"
                           >
@@ -61,10 +61,10 @@ export default function Footer() {
                           </a>
                         </div>
                         <div className="social-item-wrapper">
-                          <a 
-                            href="https://www.tiktok.com/@adsnow.ro?_r=1&_t=ZN-92KN3Zaggdj" 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
+                          <a
+                            href="https://www.tiktok.com/@adsnow.ro?_r=1&_t=ZN-92KN3Zaggdj"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="social-item"
                             aria-label="TikTok"
                           >
@@ -72,10 +72,10 @@ export default function Footer() {
                           </a>
                         </div>
                         <div className="social-item-wrapper">
-                          <a 
-                            href="https://www.instagram.com/adsnow.ro/" 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
+                          <a
+                            href="https://www.instagram.com/adsnow.ro/"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="social-item"
                             aria-label="Instagram"
                           >
@@ -92,20 +92,19 @@ export default function Footer() {
             </div>
 
             <div className="copyright-container">
-              <span className="copyright">© 2025 Algo Digital Solutions SRL. Toate drepturile rezervate.</span>
+              <span className="copyright">© 2025 Algo Digital Solutions SRL. All Rights Reserved.</span>
               <div className="d-flex flex-row gspace-2">
-                <a 
-                  href="https://consumer-redress.ec.europa.eu/site-relocation_en" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="legal-link"
+                <a
+                  href="https://consumer-redress.ec.europa.eu/site-relocation_en"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  Politica de Confidențialitate
+                  Privacy Policy
                 </a>
-                <a 
-                  href="https://anpc.ro/" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://anpc.ro/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="legal-link"
                 >
                   ANPC
@@ -117,7 +116,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </footer >
   )
 }
 

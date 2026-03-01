@@ -3,6 +3,7 @@
 import AnimateOnScroll from '../client/AnimateOnScroll'
 import DigitalStepCard from '../ui/DigitalStepCard'
 import { digitalSteps } from '../data/DigitalProcessData'
+import Image from 'next/image'
 
 export default function DigitalProcessSection() {
   return (
@@ -17,14 +18,27 @@ export default function DigitalProcessSection() {
                     <div className="d-flex flex-column gspace-2">
                       <div className="sub-heading">
                         <i className="fa-regular fa-circle-dot"></i>
-                        <span>Urmatorii pasi</span>
+                        <span>Next Steps</span>
                       </div>
-                      <h2 className="title-heading">Simplu si transparent</h2>
+                      <h2 className="title-heading">Simple and transparent</h2>
                     </div>
                   </AnimateOnScroll>
                 </div>
-                <div className="col">
-                </div>
+                <AnimateOnScroll animation="fadeInDown" speed="slow">
+                  <div className="d-flex justify-content-lg-end pt-4 pt-lg-0">
+                    <a href="/create" className="btn btn-primary">
+                      Get Started
+                      <Image
+                        src="/assets/images/cursor-dark.webp"
+                        alt="arrow"
+                        width={16}
+                        height={16}
+                        className="cursor-icon"
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                </AnimateOnScroll>
               </div>
 
               <div className="digital-process-steps-wrapper">
@@ -46,7 +60,7 @@ export default function DigitalProcessSection() {
             </div>
           </div>
         </div>
-        <div className="spacer"></div>  
+        <div className="spacer"></div>
       </div>
     </section>
   )

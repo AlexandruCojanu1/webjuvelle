@@ -2,25 +2,25 @@ export const whychooseus = [
     {
         id: 1,
         icon: "/assets/images/Icon-2.webp",
-        title: "Marketing în timp real",
-        content: "Folosim tehnici și strategii actuale în piață pentru a-ți oferi un avantaj acum.",
-        link: "#",
+        title: "Interactive AI Assistant",
+        content: "No programming or design skills needed. Answer our questions and the AI does the magic.",
+        link: "/create",
         speed: "fast"
     },
     {
         id: 2,
         icon: "/assets/images/icon-1.webp",
-        title: "Imaginația este la ea acasă",
-        content: "Avem o fire creativă, experiență în domeniu și îndrăgim ceea ce facem.",
-        link: "#",
+        title: "Ultra-Premium Design",
+        content: "We use modern technologies to provide the platform and generated sites with amazing performance and speed.",
+        link: "/create",
         speed: "normal"
     },
     {
         id: 3,
         icon: "/assets/images/Icon-3.webp",
-        title: "Metricile sunt prietenii noștri",
-        content: "Ne folosim de indicatoare de performanță pentru a da o viziune clară direcției în care ar trebui să se îndrepte afacerea ta.",
-        link: "#",
+        title: "Complete Management",
+        content: "Access everything related to your website from a single, minimalist, and intuitive control panel.",
+        link: "/create",
         speed: "slow"
     },
 ];

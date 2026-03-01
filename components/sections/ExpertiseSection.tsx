@@ -27,13 +27,13 @@ export default function ExpertiseSection() {
                   <div className="card-expertise-wrapper">
                     <AnimateOnScroll animation="fadeInDown" speed="normal">
                       <div className="card card-expertise">
-                        <h4>Simplu. Transparent. Relevant.</h4>
-                        <p>Construim experiențe digitale care rămân simple pentru tine, transparente pentru parteneri și relevante pentru public.</p>
+                        <h4>Simple. Fast. Automated.</h4>
+                        <p>We generate fully functional websites in just a few minutes, right from your explanations, without writing a single line of code.</p>
                         <div className="d-flex align-items-center flex-row gspace-2 expertise-link">
-                          <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ38JrGsAlyvinUx2IY6KHYyI7IQ-QaifvAz9diIDscT3oKh-S-_tG2_Kgkv_CYFaGW_RxtNrH73" target="_blank" rel="noopener noreferrer">Programează o întâlnire</a>
-                          <Image 
-                            src="/assets/images/cursor.webp" 
-                            alt="arrow" 
+                          <a href="/create">Try it now</a>
+                          <Image
+                            src="/assets/images/cursor.webp"
+                            alt="arrow"
                             width={16}
                             height={16}
                             className="cursor-icon"
@@ -53,28 +53,27 @@ export default function ExpertiseSection() {
             <AnimateOnScroll animation="fadeInRight" speed="normal">
               <div className="sub-heading">
                 <i className="fa-regular fa-circle-dot"></i>
-                <span>identitatea noastră</span>
+                <span>how it works</span>
               </div>
             </AnimateOnScroll>
 
             <AnimateOnScroll animation="fadeInRight" speed="normal">
               <h2 className="title-heading">
-                Construim și consolidăm identități digitale
+                Three simple steps to your new website
               </h2>
             </AnimateOnScroll>
             <p>
-              Suntem consultantul și creatorul tău de imagine în online. Identificăm punctele forte și vulnerabilitățile business-ului tău. Elaborăm strategii gândite să îți atingă potențialul.
+              Interact with our virtual assistant and get a website ready to launch. We handle the design, copywriting, and programming, so you can focus on your business.
             </p>
             <div className="d-flex flex-column flex-md-row gspace-2">
               <div className="expertise-list">
-                <h5>Ce iubim să facem:</h5>
+                <h5>The Webjuvelle Process:</h5>
                 <ul className="check-list">
-                  <li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ38JrGsAlyvinUx2IY6KHYyI7IQ-QaifvAz9diIDscT3oKh-S-_tG2_Kgkv_CYFaGW_RxtNrH73" target="_blank" rel="noopener noreferrer">identitate vizuală</a></li>
-                  <li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ38JrGsAlyvinUx2IY6KHYyI7IQ-QaifvAz9diIDscT3oKh-S-_tG2_Kgkv_CYFaGW_RxtNrH73" target="_blank" rel="noopener noreferrer">website design (UI/UX)</a></li>
-                  <li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ38JrGsAlyvinUx2IY6KHYyI7IQ-QaifvAz9diIDscT3oKh-S-_tG2_Kgkv_CYFaGW_RxtNrH73" target="_blank" rel="noopener noreferrer">website development</a></li>
-                  <li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ38JrGsAlyvinUx2IY6KHYyI7IQ-QaifvAz9diIDscT3oKh-S-_tG2_Kgkv_CYFaGW_RxtNrH73" target="_blank" rel="noopener noreferrer">SEO (on-site & off-site)</a></li>
-                  <li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ38JrGsAlyvinUx2IY6KHYyI7IQ-QaifvAz9diIDscT3oKh-S-_tG2_Kgkv_CYFaGW_RxtNrH73" target="_blank" rel="noopener noreferrer">content creation</a></li>
-                  <li><a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ38JrGsAlyvinUx2IY6KHYyI7IQ-QaifvAz9diIDscT3oKh-S-_tG2_Kgkv_CYFaGW_RxtNrH73" target="_blank" rel="noopener noreferrer">strategie ADS</a></li>
+                  <li><a href="/create">1. Answer the AI's questions</a></li>
+                  <li><a href="/create">2. We pick colors and fonts</a></li>
+                  <li><a href="/create">3. We generate structure & code</a></li>
+                  <li><a href="/create">4. You review the final result</a></li>
+                  <li><a href="/create">5. Manage from Dashboard</a></li>
                 </ul>
               </div>
 
@@ -86,10 +85,10 @@ export default function ExpertiseSection() {
                         <span className="counter-detail">+</span>
                       </span>
                     </div>
-                    <h6>Cine suntem noi</h6>
+                    <h6>Quick Support</h6>
                   </div>
                   <p>
-                    Suntem brașoveni, dedicați construirii identităților digitale memorabile pentru branduri care vor să fie văzute pentru exact ceea ce sunt.
+                    Need further changes? You can edit any section directly from the control panel effortlessly, or ask us to apply them for you.
                   </p>
                 </div>
               </AnimateOnScroll>

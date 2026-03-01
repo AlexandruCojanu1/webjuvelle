@@ -13,27 +13,25 @@ export default function NewsletterSection() {
             <div className="d-flex flex-column gspace-5 position-relative z-2">
               <AnimateOnScroll animation="fadeInLeft" speed="normal">
                 <div className="d-flex flex-column gspace-2">
-                  <h3 className="title-heading">Experiența brandului tău începe acum</h3>
+                  <h3 className="title-heading">Launch your new website now</h3>
                   <p>
-                    Nu vindem servicii. Alegem parteneri. Tu ce alegi?
+                    You don't need technical skills. Just a great idea.
                   </p>
                 </div>
               </AnimateOnScroll>
 
               <AnimateOnScroll animation="fadeInRight" speed="normal">
-                <a 
-                  href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ38JrGsAlyvinUx2IY6KHYyI7IQ-QaifvAz9diIDscT3oKh-S-_tG2_Kgkv_CYFaGW_RxtNrH73" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="/create"
                   className="btn btn-accent newsletter-btn"
                 >
                   <span className="btn-title">
-                    <span>Aplică acum</span>
+                    <span>Începe Gratuit</span>
                   </span>
                   <span className="icon-circle">
-                    <Image 
-                      src="/assets/images/cursor.webp" 
-                      alt="arrow" 
+                    <Image
+                      src="/assets/images/cursor.webp"
+                      alt="arrow"
                       width={16}
                       height={16}
                       className="cursor-icon"
