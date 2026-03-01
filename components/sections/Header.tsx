@@ -6,12 +6,17 @@ import { usePathname } from 'next/navigation'
 
 export default function Header() {
   const pathname = usePathname()
-  
+
+  const isPlatformPage = pathname?.startsWith('/create') || pathname?.startsWith('/dashboard')
+
   const isActive = (path: string) => {
     if (path === '/' && pathname === '/') return true
     if (path !== '/' && pathname?.startsWith(path)) return true
     return false
   }
+
+  // On platform pages: hide entirely
+  if (isPlatformPage) return null
 
   return (
     <header className="navbar-wrapper">
@@ -46,16 +51,16 @@ export default function Header() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
-                <Link 
-                  href="/" 
+                <Link
+                  href="/"
                   className={`nav-link ${isActive('/') ? 'active' : ''}`}
                 >
-                  Acasă
+                  Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link 
-                  href="/blog" 
+                <Link
+                  href="/blog"
                   className={`nav-link ${isActive('/blog') ? 'active' : ''}`}
                 >
                   Blog
@@ -65,12 +70,10 @@ export default function Header() {
           </div>
 
           <div className="navbar-action-container">
-            <div className="navbar-action-button">
-            </div>
+            <div className="navbar-action-button"></div>
           </div>
         </div>
       </nav>
     </header>
   )
 }
-

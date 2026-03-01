@@ -41,16 +41,6 @@ export default function CreatePage() {
         <main className="create-auth-page">
             <div className="create-auth-container">
                 <div className="create-auth-card">
-                    <div className="create-auth-logo">
-                        <Image
-                            src="/assets/images/logo1.webp"
-                            alt="Webjuvelle"
-                            width={140}
-                            height={45}
-                            priority
-                        />
-                    </div>
-
                     <div className="create-auth-header">
                         <h1>{mode === 'signup' ? 'Create Your Website' : 'Welcome Back'}</h1>
                         <p>
@@ -90,7 +80,7 @@ export default function CreatePage() {
                         {error && <div className="auth-error">{error}</div>}
                         {successMsg && <div className="auth-success">{successMsg}</div>}
 
-                        <button type="submit" className="btn btn-accent w-100" disabled={loading}>
+                        <button type="submit" className="auth-btn" disabled={loading}>
                             {loading ? 'Loading...' : mode === 'signup' ? 'Get Started Free' : 'Sign In'}
                         </button>
                     </form>
