@@ -118,33 +118,23 @@ Example:
 {
   "src/pages/index.astro": "...",
   "src/layouts/Layout.astro": "...",
-  "src/components/Hero.astro": "...",
-  "astro.config.mjs": "...",
-  "package.json": "...",
-  "tailwind.config.mjs": "...",
-  "public/robots.txt": "...",
-  "public/favicon.svg": "..."
+  "src/components/Hero.astro": "..."
 }
 
 IMPORTANT:
-- Use Astro 4.x + Tailwind CSS
-- Make it look PREMIUM and MODERN — it must wow the client
-- EXTREMELY IMPORTANT: Prioritize using the cutting edge "GSAP" components from the library (e.g. Scroll3DZoom.astro, SnapHorizontalSections.astro) to make the page highly dynamic and interactive!
-- If you use ANY GSAP or ScrollTrigger components, you MUST include the GSAP CDN scripts in your Layout.astro head:
-  \`<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" is:inline></script>\`
-  \`<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" is:inline></script>\`
-- Include all pages they requested
-- SEO & METATAGS MUST BE EXHAUSTIVE: You MUST generate comprehensive \`<meta>\` tags in your Layout including Open Graph (og:title, og:image, etc.), Twitter Cards, and standard descriptions.
-- You MUST generate a valid \`public/robots.txt\` file.
-- You MUST install and configure \`@astrojs/sitemap\` within \`astro.config.mjs\`, ensuring you define a \`site\` option so the sitemap builds correctly.
-- Use Google Fonts (match to their font preference AND the overall MOOD of the website). You MUST dynamically inject the <link> tag for the chosen Google Fonts in the <head> of Layout.astro. For example, if the mood is Luxury, fetch a classy serif like 'Playfair Display'; if Tech, fetch 'Inter' or 'Roboto Mono'.
-- Use their color preferences as the primary palette
-- Generate REAL content, not placeholder lorem ipsum
-- BE EXTREMELY CONCISE with your code to avoid hitting strict length limits! Do NOT use huge base64 images or massive inline SVGs. Use standard emoji or external links.
+- DO NOT generate \`package.json\`, \`astro.config.mjs\`, \`tailwind.config.mjs\`, or \`public/robots.txt\`. These are injected automatically!
+- ONLY output your Astro pages, layouts, and components.
+- Use Astro 4.x + Tailwind CSS.
+- EXTREMELY IMPORTANT: Prioritize using the cutting edge "GSAP" components from the library (e.g. Scroll3DZoom.astro, SnapHorizontalSections.astro).
+- If you use ANY GSAP or ScrollTrigger components, include the GSAP CDN scripts in your Layout.astro head.
+- SEO & METATAGS MUST BE EXHAUSTIVE exactly in Layout.astro.
+- Use Google Fonts (dynamically inject the <link> tag for the chosen Google Fonts in the <head> of Layout.astro).
+- Generate REAL content, not placeholder lorem ipsum.
+- MAXIMIZE CONCISENESS! Output ONLY the files strictly necessary. Keep the CSS/HTML as minimal as possible. Do NOT use huge base64 images or inline SVGs.
 - Keep the number of pages to a minimum (1-2 max) to ensure the JSON does not truncate.
-- MAXIMIZE CONCISENESS. Output ONLY the files strictly necessary to demonstrate the design. Keep the CSS and HTML as minimal as possible while still looking premium!
-- ALL images in the generated project MUST use the \`.webp\` format. If using Unsplash or placeholder URLs, ensure they resolve or indicate \`.webp\` usage.
-- Only output the JSON object, nothing else`
+- ALL images MUST use the \`.webp\` format.
+
+
 
     const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY || 'MISSING_KEY' })
 
@@ -165,9 +155,33 @@ IMPORTANT:
             files = JSON.parse(jsonMatch[0])
         } catch (e: any) {
             console.error("AI JSON parse failed. Length:", text.length, "Error:", e.message)
-            throw new Error("AI Code Generation was truncated because the requested website was too large. Please request a simpler website or fewer features.")
+            // If it failed due to truncation, we can try to auto-heal the JSON slightly by appending '}
+            try {
+                files = JSON.parse(jsonMatch[0] + '}')
+                console.log("Successfully auto-healed truncated JSON!")
+            } catch (healError) {
+                throw new Error("AI Code Generation was truncated because the requested website was too large. Please request a simpler website or fewer features.")
+            }
         }
     }
+
+    // Inject boilerplate so AI doesn't have to waste tokens writing it
+    files['package.json'] = JSON.stringify({
+        name: "webjuvelle-site",
+        version: "1.0.0",
+        scripts: { dev: "astro dev", start: "astro dev", build: "astro build", preview: "astro preview" },
+        dependencies: {
+            "astro": "^4.0.0",
+            "tailwindcss": "^3.4.0",
+            "@astrojs/tailwind": "^5.1.0",
+            "@astrojs/sitemap": "^3.1.0",
+            "gsap": "^3.12.5"
+        }
+    }, null, 2)
+
+    files['astro.config.mjs'] = `import { defineConfig } from 'astro/config';\nimport tailwind from '@astrojs/tailwind';\nimport sitemap from '@astrojs/sitemap';\nexport default defineConfig({\n  site: 'https://example.com',\n  integrations: [tailwind(), sitemap()]\n});`
+    files['tailwind.config.mjs'] = `export default {\n  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],\n  theme: { extend: {} },\n  plugins: [],\n}`
+    files['public/robots.txt'] = "User-agent: *\\nAllow: /"
 
     const projectName = `${(onboardingData.business_name || 'webjuvelle-site')
         .toLowerCase()
