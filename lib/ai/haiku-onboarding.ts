@@ -49,11 +49,13 @@ export async function runHaikuOnboarding(
     const cleanReply = assistantReply.replace('[ONBOARDING_COMPLETE]', '').trim()
 
     // Save conversation to Supabase
-    const supabase = createServerSupabase()
-    await supabase.from('conversations').insert([
-        { project_id: projectId, role: 'user', content: userMessage },
-        { project_id: projectId, role: 'assistant', content: cleanReply || 'Onboarding complete! Starting your website generation...' },
-    ])
+    if (projectId !== '00000000-0000-0000-0000-000000000000') {
+        const supabase = createServerSupabase()
+        await supabase.from('conversations').insert([
+            { project_id: projectId, role: 'user', content: userMessage },
+            { project_id: projectId, role: 'assistant', content: cleanReply || 'Onboarding complete! Starting your website generation...' },
+        ])
+    }
 
     return {
         reply: cleanReply || "I have everything I need! Let me now generate your website. This will take about 1-2 minutes...",
