@@ -161,7 +161,7 @@ export default function WizardPage() {
             setPhase('deployed')
             setMessages(prev => [...prev, {
                 role: 'assistant',
-                content: `🎉 Your website is live!\n\n**Preview:** [${data.deploymentUrl}](${data.deploymentUrl})\n\nWhat do you think? You have 1 free revision. Tell me what to change, or say "I love it!" to move on to your domain.`,
+                content: `🎉 I've sent the code to Vercel!\n\n**Preview Link:** [${data.deploymentUrl}](${data.deploymentUrl})\n\n*(Note: It takes about 45-60 seconds for Vercel to build the site. If the link shows an error, please wait a minute and refresh the page.)*\n\nWhat do you think? You have 1 free revision. Tell me what to change, or say "I love it!" to move on to your domain.`,
             }])
         }
     }

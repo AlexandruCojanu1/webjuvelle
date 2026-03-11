@@ -60,8 +60,9 @@ export async function deployToVercel(
 
     const deployment = await deployRes.json()
 
-    // 3. Poll until deployment is ready (max 3 minutes)
-    const deploymentUrl = await pollDeployment(deployment.id, 36, 5000)
+    // 3. Skip polling to prevent 60s serverless timeout on Vercel Hobby tier.
+    // The link will be valid once Vercel finishes building in the background.
+    const deploymentUrl = `https://${deployment.url}`
 
     return { projectId, deploymentUrl }
 }
@@ -109,7 +110,8 @@ export async function redeployProject(projectId: string, repoName: string): Prom
     })
 
     const deployment = await deployRes.json()
-    return pollDeployment(deployment.id, 36, 5000)
+    // Skip polling to prevent serverless timeout on Vercel Hobby tier
+    return `https://${deployment.url}`
 }
 
 // Add a custom domain to a Vercel project
