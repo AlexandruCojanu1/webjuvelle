@@ -62,27 +62,7 @@ function getDesignPrinciplesContext(): string {
     return ''
 }
 
-// Fetch color/font palette list from design library
-async function getDesignLibraryContext(): Promise<string> {
-    try {
-        const { data: tree } = await octokit.git.getTree({
-            owner: process.env.GITHUB_COMPONENT_LIBRARY_OWNER!,
-            repo: process.env.GITHUB_COLOR_FONT_REPO!,
-            tree_sha: 'main',
-            recursive: 'true',
-        })
-
-        const palettes = tree.tree
-            .filter(f => f.type === 'blob')
-            .map(f => f.path)
-            .slice(0, 50)
-            .join('\n')
-
-        return `Available color/font palettes:\n${palettes}`
-    } catch {
-        return 'Design library not yet configured.'
-    }
-}
+// Fetch color/font palette list from design library (REMOVED: User requested removal)
 
 // Read the content of a specific component file from GitHub
 export async function getComponentContent(filePath: string): Promise<string> {
@@ -104,7 +84,6 @@ export async function generateAstroWebsite(
     onboardingData: Record<string, string>
 ): Promise<{ files: Record<string, string>; projectName: string }> {
     const componentContext = await getComponentLibraryContext()
-    const designContext = await getDesignLibraryContext()
 
     const prompt = `You are an expert Astro website developer. Based on the client's requirements below, generate a complete, production-ready Astro website.
 
@@ -113,9 +92,6 @@ ${JSON.stringify(onboardingData, null, 2)}
 
 COMPONENT LIBRARY AVAILABLE:
 ${componentContext}
-
-DESIGN LIBRARY AVAILABLE:
-${designContext}
 
 PREMIUM DESIGN PATTERNS (Extracted from high-end references):
 ${getLocalDesignPaletteContext()}
