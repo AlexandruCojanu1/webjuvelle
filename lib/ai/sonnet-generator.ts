@@ -133,8 +133,7 @@ IMPORTANT:
 - MAXIMIZE CONCISENESS! Output ONLY the files strictly necessary. Keep the CSS/HTML as minimal as possible. Do NOT use huge base64 images or inline SVGs.
 - Keep the number of pages to a minimum (1-2 max) to ensure the JSON does not truncate.
 - ALL images MUST use the \`.webp\` format.
-
-
+- Only output the JSON object, nothing else.`
 
     const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY || 'MISSING_KEY' })
 
@@ -179,8 +178,21 @@ IMPORTANT:
         }
     }, null, 2)
 
-    files['astro.config.mjs'] = `import { defineConfig } from 'astro/config';\nimport tailwind from '@astrojs/tailwind';\nimport sitemap from '@astrojs/sitemap';\nexport default defineConfig({\n  site: 'https://example.com',\n  integrations: [tailwind(), sitemap()]\n});`
-    files['tailwind.config.mjs'] = `export default {\n  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],\n  theme: { extend: {} },\n  plugins: [],\n}`
+    files['astro.config.mjs'] = `import { defineConfig } from 'astro/config';
+import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
+
+export default defineConfig({
+  site: 'https://example.com',
+  integrations: [tailwind(), sitemap()]
+});`
+
+    files['tailwind.config.mjs'] = `export default {
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  theme: { extend: {} },
+  plugins: [],
+}`
+
     files['public/robots.txt'] = "User-agent: *\\nAllow: /"
 
     const projectName = `${(onboardingData.business_name || 'webjuvelle-site')
