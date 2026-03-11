@@ -4,6 +4,8 @@ import { createAndPushRepo } from '@/lib/github-deploy'
 import { deployToVercel } from '@/lib/vercel-deploy'
 import { createServerSupabase } from '@/lib/supabase'
 
+export const maxDuration = 300; // Allow max execution time for AI generation
+
 export async function POST(req: NextRequest) {
     try {
         const { projectId, mockOnboardingData } = await req.json()
