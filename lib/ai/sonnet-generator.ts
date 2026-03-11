@@ -156,7 +156,7 @@ IMPORTANT:
 - SEO & METATAGS MUST BE EXHAUSTIVE: You MUST generate comprehensive \`<meta>\` tags in your Layout including Open Graph (og:title, og:image, etc.), Twitter Cards, and standard descriptions.
 - You MUST generate a valid \`public/robots.txt\` file.
 - You MUST install and configure \`@astrojs/sitemap\` within \`astro.config.mjs\`, ensuring you define a \`site\` option so the sitemap builds correctly.
-- Use Google Fonts (match to their font preference)
+- Use Google Fonts (match to their font preference AND the overall MOOD of the website). You MUST dynamically inject the <link> tag for the chosen Google Fonts in the <head> of Layout.astro. For example, if the mood is Luxury, fetch a classy serif like 'Playfair Display'; if Tech, fetch 'Inter' or 'Roboto Mono'.
 - Use their color preferences as the primary palette
 - Generate REAL content, not placeholder lorem ipsum
 - ALL images in the generated project MUST use the \`.webp\` format. If using Unsplash or placeholder URLs, ensure they resolve or indicate \`.webp\` usage.
