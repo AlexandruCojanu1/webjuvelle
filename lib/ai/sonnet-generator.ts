@@ -7,9 +7,13 @@ const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 // Fetch the list of available components from the component library GitHub repo
 async function getComponentLibraryContext(): Promise<string> {
     try {
+        if (!process.env.GITHUB_COMPONENT_LIBRARY_OWNER || !process.env.GITHUB_COMPONENT_LIBRARY_REPO) {
+            return 'Component library not configured (missing environment variables).'
+        }
+
         const { data: tree } = await octokit.git.getTree({
-            owner: process.env.GITHUB_COMPONENT_LIBRARY_OWNER!,
-            repo: process.env.GITHUB_COMPONENT_LIBRARY_REPO!,
+            owner: process.env.GITHUB_COMPONENT_LIBRARY_OWNER,
+            repo: process.env.GITHUB_COMPONENT_LIBRARY_REPO,
             tree_sha: 'main',
             recursive: 'true',
         })
@@ -67,9 +71,11 @@ function getDesignPrinciplesContext(): string {
 // Read the content of a specific component file from GitHub
 export async function getComponentContent(filePath: string): Promise<string> {
     try {
+        if (!process.env.GITHUB_COMPONENT_LIBRARY_OWNER || !process.env.GITHUB_COMPONENT_LIBRARY_REPO) return ''
+
         const { data } = await octokit.repos.getContent({
-            owner: process.env.GITHUB_COMPONENT_LIBRARY_OWNER!,
-            repo: process.env.GITHUB_COMPONENT_LIBRARY_REPO!,
+            owner: process.env.GITHUB_COMPONENT_LIBRARY_OWNER,
+            repo: process.env.GITHUB_COMPONENT_LIBRARY_REPO,
             path: filePath,
         })
 
