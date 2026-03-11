@@ -22,7 +22,13 @@ export default function CreatePage() {
 
         try {
             if (mode === 'signup') {
-                const { error } = await supabase.auth.signUp({ email, password })
+                const { error } = await supabase.auth.signUp({ 
+                    email, 
+                    password,
+                    options: {
+                        emailRedirectTo: `${location.origin}/create`
+                    }
+                })
                 if (error) throw error
                 setSuccessMsg('Check your email to confirm your account, then log in.')
             } else {
