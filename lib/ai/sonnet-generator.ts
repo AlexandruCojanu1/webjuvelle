@@ -141,7 +141,8 @@ IMPORTANT:
 - Use their color preferences as the primary palette
 - Generate REAL content, not placeholder lorem ipsum
 - BE EXTREMELY CONCISE with your code to avoid hitting strict length limits! Do NOT use huge base64 images or massive inline SVGs. Use standard emoji or external links.
-- Keep the number of pages to a minimum (1-3 max) to ensure the JSON does not truncate.
+- Keep the number of pages to a minimum (1-2 max) to ensure the JSON does not truncate.
+- MAXIMIZE CONCISENESS. Output ONLY the files strictly necessary to demonstrate the design. Keep the CSS and HTML as minimal as possible while still looking premium!
 - ALL images in the generated project MUST use the \`.webp\` format. If using Unsplash or placeholder URLs, ensure they resolve or indicate \`.webp\` usage.
 - Only output the JSON object, nothing else`
 
@@ -168,11 +169,10 @@ IMPORTANT:
         }
     }
 
-    // Generate a clean project name from business name
-    const projectName = (onboardingData.business_name || 'webjuvelle-site')
+    const projectName = `${(onboardingData.business_name || 'webjuvelle-site')
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
-        .replace(/^-|-$/g, '')
+        .replace(/^-|-$/g, '')}-${Date.now()}`
 
     return { files, projectName }
 }
