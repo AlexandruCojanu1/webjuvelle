@@ -1,6 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { Octokit } from '@octokit/rest'
-
+import fs from 'fs'
+import path from 'path'
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! })
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
@@ -23,6 +24,43 @@ async function getComponentLibraryContext(): Promise<string> {
     } catch {
         return 'Component library not yet configured.'
     }
+}
+
+// Fetch extracted design patterns from local analysis
+function getLocalDesignPaletteContext(): string {
+    try {
+        const palettePath = path.join(process.cwd(), 'design-palette.json')
+        if (fs.existsSync(palettePath)) {
+            const data = JSON.parse(fs.readFileSync(palettePath, 'utf8'))
+            
+            // Limit the lists so we don't blow up the context window
+            const fonts = data.fontFamilies.slice(0, 15).join(', ')
+            const colors = data.colorHexes.slice(0, 30).join(', ')
+            
+            return `Referințe de Design (extrase din ${data.totalProjectsAnalyzed} proiecte premium):\nFonturi Recomandate: ${fonts}\nPaletă Extinsă de Culori Aprobate: ${colors}`
+        }
+    } catch {
+        // Fallback if file doesn't exist
+    }
+    return ''
+}
+
+// Fetch general architecture patterns and CSS protips
+function getDesignPrinciplesContext(): string {
+    try {
+        const principlesPath = path.join(process.cwd(), 'design-principles.json')
+        if (fs.existsSync(principlesPath)) {
+            const data = JSON.parse(fs.readFileSync(principlesPath, 'utf8'))
+            
+            const cssProtips = data.cssProtips.join(', ')
+            const patterns = data.designPatterns.join(', ')
+            
+            return `CSS Protips (Best Practices): ${cssProtips}\nDesign Patterns: ${patterns}`
+        }
+    } catch {
+        // Fallback
+    }
+    return ''
 }
 
 // Fetch color/font palette list from design library
@@ -80,6 +118,12 @@ ${componentContext}
 DESIGN LIBRARY AVAILABLE:
 ${designContext}
 
+PREMIUM DESIGN PATTERNS (Extracted from high-end references):
+${getLocalDesignPaletteContext()}
+
+ADVANCED CSS & UX PRINCIPLES:
+${getDesignPrinciplesContext()}
+
 YOUR TASK:
 1. Select the most appropriate components from the library for this website type
 2. Choose a suitable color palette and font combination
@@ -97,22 +141,29 @@ Example:
   "astro.config.mjs": "...",
   "package.json": "...",
   "tailwind.config.mjs": "...",
+  "public/robots.txt": "...",
   "public/favicon.svg": "..."
 }
 
 IMPORTANT:
 - Use Astro 4.x + Tailwind CSS
 - Make it look PREMIUM and MODERN — it must wow the client
-- Use the client's actual business name, description, and content
+- EXTREMELY IMPORTANT: Prioritize using the cutting edge "GSAP" components from the library (e.g. Scroll3DZoom.astro, SnapHorizontalSections.astro) to make the page highly dynamic and interactive!
+- If you use ANY GSAP or ScrollTrigger components, you MUST include the GSAP CDN scripts in your Layout.astro head:
+  \`<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" is:inline></script>\`
+  \`<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" is:inline></script>\`
 - Include all pages they requested
-- Add proper meta tags for SEO
+- SEO & METATAGS MUST BE EXHAUSTIVE: You MUST generate comprehensive \`<meta>\` tags in your Layout including Open Graph (og:title, og:image, etc.), Twitter Cards, and standard descriptions.
+- You MUST generate a valid \`public/robots.txt\` file.
+- You MUST install and configure \`@astrojs/sitemap\` within \`astro.config.mjs\`, ensuring you define a \`site\` option so the sitemap builds correctly.
 - Use Google Fonts (match to their font preference)
 - Use their color preferences as the primary palette
 - Generate REAL content, not placeholder lorem ipsum
+- ALL images in the generated project MUST use the \`.webp\` format. If using Unsplash or placeholder URLs, ensure they resolve or indicate \`.webp\` usage.
 - Only output the JSON object, nothing else`
 
     const response = await anthropic.messages.create({
-        model: 'claude-sonnet-4-5',
+        model: 'claude-sonnet-4-6',
         max_tokens: 16000,
         messages: [{ role: 'user', content: prompt }],
     })
@@ -149,7 +200,7 @@ Apply ONLY the changes requested. Return the COMPLETE updated file list as JSON 
 Only output the JSON object, nothing else.`
 
     const response = await anthropic.messages.create({
-        model: 'claude-sonnet-4-5',
+        model: 'claude-sonnet-4-6',
         max_tokens: 16000,
         messages: [{ role: 'user', content: prompt }],
     })

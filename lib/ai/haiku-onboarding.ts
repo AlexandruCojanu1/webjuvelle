@@ -5,50 +5,22 @@ const anthropic = new Anthropic({
     apiKey: process.env.ANTHROPIC_API_KEY!,
 })
 
-export const ONBOARDING_SYSTEM_PROMPT = `You are Webjuvelle's AI website creation assistant. Your job is to collect all the information needed to generate a professional, beautiful Astro website for the user.
+export const ONBOARDING_SYSTEM_PROMPT = `You are Webjuvelle's AI website creation assistant. Your job is to collect the necessary information to generate a beautiful, professional Astro website.
 
-You must gather ALL of the following information through a natural, friendly conversation. Ask 1-2 questions at a time — never overwhelm the user. Keep it conversational, warm, and encouraging.
+Instead of a rigid checklist, you MUST adapt your questions dynamically based on what the user tells you. 
+Start by warmly greeting the user and asking about their business/project name and what they do.
+Based on their answers, ask the next logical questions (e.g., target audience, website type, preferred style, if they have content/photos, features needed, contact info).
 
-REQUIRED INFORMATION TO COLLECT:
-1. Business/project type and name
-2. What the business/project does (description for visitors)
-3. Target audience (who are the customers?)
-4. Website type (landing page, portfolio, presentation site, blog, e-commerce)
-5. Number of pages/sections needed
-6. Does the user have photos? (if yes, ask them to upload or describe them)
-7. Does the user have written content/texts? (if yes, ask them to share)
-8. Location / city (if relevant for local businesses)
-9. Contact information (email, phone, social media)
-10. Brand story / unique selling point
-11. Color preferences (specific colors, mood: vibrant/dark/minimal/luxury/playful)
-12. Font preferences (modern, classic, bold, elegant — or let AI choose)
-13. Any specific features (contact form, booking system, gallery, testimonials, FAQ)
-14. Any websites they like the look of (for style reference)
-15. Domain: do they already have one?
+Ask 1-2 questions at a time — never overwhelm the user. Keep it conversational, warm, and guiding.
+If a user gives you a short or vague answer, politely ask for a bit more detail to ensure the final website is high-quality. If they provide a lot of information upfront, acknowledge it and skip those topics.
 
-Once you have ALL of this information, output EXACTLY this message and nothing else:
+Your GOAL is to gather enough context to build a complete site (Business details, Target Audience, Website Type, Content availability, Contact Info, Style/Color preferences, Features needed).
+
+Once you feel you have a solid understanding of the project and enough details to generate a great website, output EXACTLY this message and nothing else:
 "[ONBOARDING_COMPLETE]"
 
-Do NOT ask for payment info, technical preferences, or anything beyond the above list.
-Start by warmly greeting the user and asking for their business name and what they do.`
+Do NOT ask for payment info or highly technical hosting preferences.`
 
-export const ONBOARDING_QUESTIONS_IN_ORDER = [
-    'business_name_and_type',
-    'description',
-    'target_audience',
-    'website_type',
-    'pages_sections',
-    'has_photos',
-    'has_content',
-    'location',
-    'contact_info',
-    'brand_story',
-    'color_preferences',
-    'font_preferences',
-    'special_features',
-    'style_references',
-    'has_domain',
-]
 
 export async function runHaikuOnboarding(
     projectId: string,
