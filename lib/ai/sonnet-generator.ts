@@ -158,6 +158,8 @@ IMPORTANT:
 - Use Google Fonts (match to their font preference AND the overall MOOD of the website). You MUST dynamically inject the <link> tag for the chosen Google Fonts in the <head> of Layout.astro. For example, if the mood is Luxury, fetch a classy serif like 'Playfair Display'; if Tech, fetch 'Inter' or 'Roboto Mono'.
 - Use their color preferences as the primary palette
 - Generate REAL content, not placeholder lorem ipsum
+- BE EXTREMELY CONCISE with your code to avoid hitting strict length limits! Do NOT use huge base64 images or massive inline SVGs. Use standard emoji or external links.
+- Keep the number of pages to a minimum (1-3 max) to ensure the JSON does not truncate.
 - ALL images in the generated project MUST use the \`.webp\` format. If using Unsplash or placeholder URLs, ensure they resolve or indicate \`.webp\` usage.
 - Only output the JSON object, nothing else`
 
@@ -173,7 +175,16 @@ IMPORTANT:
 
     // Extract JSON from response (handle potential markdown code blocks)
     const jsonMatch = text.match(/\{[\s\S]*\}/)
-    const files: Record<string, string> = jsonMatch ? JSON.parse(jsonMatch[0]) : {}
+    let files: Record<string, string> = {}
+    
+    if (jsonMatch) {
+        try {
+            files = JSON.parse(jsonMatch[0])
+        } catch (e: any) {
+            console.error("AI JSON parse failed. Length:", text.length, "Error:", e.message)
+            throw new Error("AI Code Generation was truncated because the requested website was too large. Please request a simpler website or fewer features.")
+        }
+    }
 
     // Generate a clean project name from business name
     const projectName = (onboardingData.business_name || 'webjuvelle-site')
