@@ -1,9 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { createServerSupabase } from '@/lib/supabase'
 
-const anthropic = new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY!,
-})
+// Anthropic initialized dynamically inside functions to prevent top-level crash
 
 export const ONBOARDING_SYSTEM_PROMPT = `You are Webjuvelle's AI website creation assistant. Your job is to collect the necessary information to generate a beautiful, professional Astro website.
 
@@ -34,6 +32,10 @@ export async function runHaikuOnboarding(
         })),
         { role: 'user' as const, content: userMessage },
     ]
+
+    const anthropic = new Anthropic({
+        apiKey: process.env.ANTHROPIC_API_KEY || 'MISSING_KEY',
+    })
 
     const response = await anthropic.messages.create({
         model: 'claude-haiku-4-5',
@@ -70,6 +72,10 @@ export async function extractOnboardingData(
     const conversationText = conversationHistory
         .map(m => `${m.role.toUpperCase()}: ${m.content}`)
         .join('\n\n')
+
+    const anthropic = new Anthropic({
+        apiKey: process.env.ANTHROPIC_API_KEY || 'MISSING_KEY',
+    })
 
     const response = await anthropic.messages.create({
         model: 'claude-haiku-4-5',

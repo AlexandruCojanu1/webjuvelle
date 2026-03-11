@@ -2,7 +2,6 @@ import Anthropic from '@anthropic-ai/sdk'
 import { Octokit } from '@octokit/rest'
 import fs from 'fs'
 import path from 'path'
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY! })
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN })
 
 // Fetch the list of available components from the component library GitHub repo
@@ -162,6 +161,8 @@ IMPORTANT:
 - ALL images in the generated project MUST use the \`.webp\` format. If using Unsplash or placeholder URLs, ensure they resolve or indicate \`.webp\` usage.
 - Only output the JSON object, nothing else`
 
+    const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY || 'MISSING_KEY' })
+
     const response = await anthropic.messages.create({
         model: 'claude-sonnet-4-6',
         max_tokens: 16000,
@@ -198,6 +199,8 @@ ${revisionRequest}
 
 Apply ONLY the changes requested. Return the COMPLETE updated file list as JSON (include unchanged files too).
 Only output the JSON object, nothing else.`
+
+    const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY || 'MISSING_KEY' })
 
     const response = await anthropic.messages.create({
         model: 'claude-sonnet-4-6',
