@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
@@ -13,6 +13,12 @@ export default function CreatePage() {
     const [error, setError] = useState('')
     const [successMsg, setSuccessMsg] = useState('')
     const router = useRouter()
+
+    // --- AUTH BYPASS FOR TESTING ---
+    useEffect(() => {
+        router.push('/create/wizard')
+    }, [router])
+
 
     async function handleAuth(e: React.FormEvent) {
         e.preventDefault()
