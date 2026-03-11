@@ -109,7 +109,7 @@ export default function WizardPage() {
                 if (data.isComplete) {
                     setPhase('generating')
                     setMessages(prev => [...prev, { role: 'assistant', content: '🚀 Perfect! Generating your website now — this usually takes 1–2 minutes…' }])
-                    await triggerGeneration()
+                    await triggerGeneration(data.onboardingData)
                 }
             } else if (phase === 'revision') {
                 const res = await fetch('/api/revise', {
@@ -149,11 +149,11 @@ export default function WizardPage() {
         }
     }
 
-    async function triggerGeneration() {
+    async function triggerGeneration(mockData?: any) {
         const res = await fetch('/api/generate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ projectId }),
+            body: JSON.stringify({ projectId, mockOnboardingData: mockData }),
         })
         const data = await res.json()
         if (data.deploymentUrl) {
@@ -195,6 +195,7 @@ export default function WizardPage() {
     }
 
     function renderContent(text: string) {
+        if (!text) return ''
         return text
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
             .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')

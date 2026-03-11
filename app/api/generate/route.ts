@@ -6,31 +6,36 @@ import { createServerSupabase } from '@/lib/supabase'
 
 export async function POST(req: NextRequest) {
     try {
-        const { projectId } = await req.json()
+        const { projectId, mockOnboardingData } = await req.json()
 
         if (!projectId) {
             return NextResponse.json({ error: 'projectId is required' }, { status: 400 })
         }
 
-        const supabase = createServerSupabase()
+        let onboardingData = mockOnboardingData
 
-        // Fetch project and onboarding data
-        const { data: project, error } = await supabase
-            .from('projects')
-            .select('*')
-            .eq('id', projectId)
-            .single()
+        if (projectId !== '00000000-0000-0000-0000-000000000000') {
+            const supabase = createServerSupabase()
+            // Fetch project and onboarding data
+            const { data: project, error } = await supabase
+                .from('projects')
+                .select('*')
+                .eq('id', projectId)
+                .single()
 
-        if (error || !project) {
-            return NextResponse.json({ error: 'Project not found' }, { status: 404 })
+            if (error || !project) {
+                return NextResponse.json({ error: 'Project not found' }, { status: 404 })
+            }
+
+            onboardingData = project.onboarding_data
         }
 
-        if (!project.onboarding_data) {
+        if (!onboardingData) {
             return NextResponse.json({ error: 'Onboarding not complete' }, { status: 400 })
         }
 
         // 1. Generate the Astro website with Sonnet
-        const { files, projectName } = await generateAstroWebsite(project.onboarding_data)
+        const { files, projectName } = await generateAstroWebsite(onboardingData)
 
         // 2. Create GitHub repo and push files
         const repoUrl = await createAndPushRepo(projectName, files)
@@ -41,23 +46,26 @@ export async function POST(req: NextRequest) {
             process.env.GITHUB_DEPLOY_ORG!
         )
 
-        // 4. Update project in Supabase
-        await supabase
-            .from('projects')
-            .update({
-                status: 'deployed',
-                vercel_project_id: vercelProjectId,
-                vercel_url: deploymentUrl,
-                github_repo: projectName,
-            })
-            .eq('id', projectId)
+        // 4. Update project in Supabase if not mock
+        if (projectId !== '00000000-0000-0000-0000-000000000000') {
+            const supabase = createServerSupabase()
+            await supabase
+                .from('projects')
+                .update({
+                    status: 'deployed',
+                    vercel_project_id: vercelProjectId,
+                    vercel_url: deploymentUrl,
+                    github_repo: projectName,
+                })
+                .eq('id', projectId)
 
-        // 5. Save a message in the conversation
-        await supabase.from('conversations').insert({
-            project_id: projectId,
-            role: 'assistant',
-            content: `🎉 Your website is ready! Preview it here: ${deploymentUrl}\n\nLet me know if you'd like any changes. You have 1 free revision available.`,
-        })
+            // 5. Save a message in the conversation
+            await supabase.from('conversations').insert({
+                project_id: projectId,
+                role: 'assistant',
+                content: `🎉 Your website is ready! Preview it here: ${deploymentUrl}\n\nLet me know if you'd like any changes. You have 1 free revision available.`,
+            })
+        }
 
         return NextResponse.json({ deploymentUrl, repoUrl })
     } catch (err) {
@@ -65,7 +73,7 @@ export async function POST(req: NextRequest) {
 
         // Update project status to failed
         const { projectId } = await req.json().catch(() => ({}))
-        if (projectId) {
+        if (projectId && projectId !== '00000000-0000-0000-0000-000000000000') {
             const supabase = createServerSupabase()
             await supabase
                 .from('projects')
