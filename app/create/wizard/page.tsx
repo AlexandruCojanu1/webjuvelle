@@ -102,7 +102,7 @@ export default function WizardPage() {
                 const res = await fetch('/api/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ projectId, message: text }),
+                    body: JSON.stringify({ projectId, message: text, mockHistory: messages }),
                 })
                 const data = await res.json()
                 setMessages(prev => [...prev, { role: 'assistant', content: data.reply }])
