@@ -68,19 +68,12 @@ export async function POST(req: NextRequest) {
         }
 
         return NextResponse.json({ deploymentUrl, repoUrl })
-    } catch (err) {
+    } catch (err: any) {
         console.error('Generate API error:', err)
-
-        // Update project status to failed
-        const { projectId } = await req.json().catch(() => ({}))
-        if (projectId && projectId !== '00000000-0000-0000-0000-000000000000') {
-            const supabase = createServerSupabase()
-            await supabase
-                .from('projects')
-                .update({ status: 'failed' })
-                .eq('id', projectId)
-        }
-
-        return NextResponse.json({ error: 'Generation failed' }, { status: 500 })
+        return NextResponse.json({ 
+            error: 'Generation failed',
+            details: err?.message || String(err),
+            stack: err?.stack
+        }, { status: 500 })
     }
 }
